@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © MageKey. All rights reserved.
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="mgk_brochure" class="MageKey\Brochure\Block\Widget" is_email_compatible="true" ttl="86400">
+        <label translate="true">Brochures List</label>
+        <description translate="true">List of Brochures</description>
+        <parameters>
+            <parameter name="group_id" xsi:type="block" required="true" visible="true">
+                <label translate="true">Group</label>
+                <block class="MageKey\Brochure\Block\Adminhtml\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Select Group...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+            <parameter name="title" xsi:type="text" required="false" visible="true">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter name="items_count" xsi:type="text" required="false" visible="true">
+                <label translate="true">Number of Brochures</label>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

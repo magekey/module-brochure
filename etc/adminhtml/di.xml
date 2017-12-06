@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageKey. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- UI Collection Provider DI -->
+    <type name="MageKey\Brochure\Model\ResourceModel\Group\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mgk_brochure_group</argument>
+            <argument name="eventPrefix" xsi:type="string">mgk_brochure_group_collection</argument>
+            <argument name="eventObject" xsi:type="string">group_collection</argument>
+            <argument name="resourceModel" xsi:type="string">MageKey\Brochure\Model\ResourceModel\Group</argument>
+        </arguments>
+    </type>
+    <type name="MageKey\Brochure\Model\ResourceModel\Item\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mgk_brochure_item</argument>
+            <argument name="eventPrefix" xsi:type="string">mgk_brochure_item_collection</argument>
+            <argument name="eventObject" xsi:type="string">item_collection</argument>
+            <argument name="resourceModel" xsi:type="string">MageKey\Brochure\Model\ResourceModel\Item</argument>
+        </arguments>
+    </type>
+
+    <!-- UI Form Data Providers -->
+    <type name="MageKey\Brochure\Ui\DataProvider\Form\GroupDataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">MageKey\Brochure\Ui\DataProvider\Form\Modifier\Group\Pool</argument>
+        </arguments>
+    </type>
+    <virtualType name="MageKey\Brochure\Ui\DataProvider\Form\Modifier\Group\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="general" xsi:type="array">
+                    <item name="class" xsi:type="string">MageKey\Brochure\Ui\DataProvider\Form\Modifier\Group\General</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="MageKey\Brochure\Ui\DataProvider\Form\ItemDataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">MageKey\Brochure\Ui\DataProvider\Form\Modifier\Item\Pool</argument>
+        </arguments>
+    </type>
+    <virtualType name="MageKey\Brochure\Ui\DataProvider\Form\Modifier\Item\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="general" xsi:type="array">
+                    <item name="class" xsi:type="string">MageKey\Brochure\Ui\DataProvider\Form\Modifier\Item\General</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+</config>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageKey. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend/etc/menu.xsd">
+    <menu>
+        <add id="MageKey_Brochure::mgk_brochure" title="Brochures" module="MageKey_Brochure" sortOrder="100"
+            dependsOnModule="MageKey_Brochure" parent="Magento_Backend::content" resource="MageKey_Brochure::mgk_brochure"/>
+        <add id="MageKey_Brochure::group" title="Groups" module="MageKey_Brochure" sortOrder="10"
+             parent="MageKey_Brochure::mgk_brochure" action="mgk_brochure/group/index" resource="MageKey_Brochure::group"/>
+        <add id="MageKey_Brochure::item" title="Items" module="MageKey_Brochure" sortOrder="20"
+             parent="MageKey_Brochure::mgk_brochure" action="mgk_brochure/item/index" resource="MageKey_Brochure::item"/>
+    </menu>
+</config>

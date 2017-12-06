@@ -1,0 +1,33 @@
+<?php
+/**
+ * Copyright © MageKey. All rights reserved.
+ */
+
+use MageKey\Brochure\Helper\Data as DataHelper;
+
+$_fileHelper = $this->helper('MageKey\Brochure\Helper\File');
+$_imageHelper = $this->helper('MageKey\Brochure\Helper\Image');
+$_items = $block->getCollection();
+
+?>
+<?php if ($_items->count()) : ?>
+    <div class="brochure-list mgk-brochure-list">
+        <ol class="brochure-items">
+            <?php foreach ($_items as $_item) : ?>
+            <li class="brochure-item">
+                <a href="<?= $_fileHelper->getMediaUrl(DataHelper::ITEM_UPLOAD_DIR . '/' . $_item->getFile()) ?>" target="_blank">
+                    <div class="brochure-item-cover">
+                        <img alt="<?= $block->escapeHtml($_item->getTitle()) ?>"
+                             title="<?= $block->escapeHtml($_item->getTitle()) ?>"
+                             src="<?= $_imageHelper->getImage(
+                                 DataHelper::COVER_UPLOAD_DIR . '/' . $_item->getImage(),
+                                 'brochure_item_widget'
+                             ) ?>" />
+                    </div>
+                    <div class="brochure-item-title"><?= $block->escapeHtml($_item->getTitle()) ?></div>
+                </a>
+            </li>
+            <?php endforeach; ?>
+        </ol>
+    </div>
+<?php endif; ?>

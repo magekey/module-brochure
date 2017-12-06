@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageKey. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Data DI -->
+    <preference for="MageKey\Brochure\Api\Data\GroupInterface" type="MageKey\Brochure\Model\Group" />
+    <preference for="MageKey\Brochure\Api\Data\ItemInterface" type="MageKey\Brochure\Model\Item" />
+    <preference for="MageKey\Brochure\Api\GroupRepositoryInterface" type="MageKey\Brochure\Model\GroupRepository" />
+    <preference for="MageKey\Brochure\Api\ItemRepositoryInterface" type="MageKey\Brochure\Model\ItemRepository" />
+
+    <!-- UI Data Provider Collections -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mgk_brochure_group_data_source" xsi:type="string">MageKey\Brochure\Model\ResourceModel\Group\Grid\Collection</item>
+                <item name="mgk_brochure_item_data_source" xsi:type="string">MageKey\Brochure\Model\ResourceModel\Item\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Entity Manager DI -->
+    <type name="Magento\Framework\Model\Entity\RepositoryFactory">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="MageKey\Brochure\Api\Data\ItemInterface" xsi:type="string">MageKey\Brochure\Api\ItemRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="MageKey\Brochure\Api\Data\ItemInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">mgk_brochure_item</item>
+                    <item name="identifierField" xsi:type="string">item_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="MageKey\Brochure\Api\Data\ItemInterface" xsi:type="array">
+                    <item name="read" xsi:type="array">
+                        <item name="itemGroup" xsi:type="string">MageKey\Brochure\Model\ResourceModel\Item\Group\ReadHandler</item>
+                    </item>
+                    <item name="create" xsi:type="array">
+                        <item name="itemGroup" xsi:type="string">MageKey\Brochure\Model\ResourceModel\Item\Group\SaveHandler</item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="itemGroup" xsi:type="string">MageKey\Brochure\Model\ResourceModel\Item\Group\SaveHandler</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="MageKey\Brochure\Api\Data\ItemInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>
